@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
-import 'package:flutter_app/container_test.dart';
-import 'package:flutter_app/http_test.dart';
-import 'package:flutter_app/image_test.dart';
-import 'package:flutter_app/button_test.dart';
-import 'package:flutter_app/hello_flutter.dart';
-import 'package:flutter_app/text_field_test.dart';
-import 'package:flutter_app/widget/XWebView.dart';
+import 'package:flutter_app/ui/page/demo/container_test.dart';
+import 'package:flutter_app/ui/page/demo/http_test.dart';
+import 'package:flutter_app/ui/page/demo/image_test.dart';
+import 'package:flutter_app/ui/page/demo/button_test.dart';
+import 'package:flutter_app/ui/page/demo/hello_flutter.dart';
+import 'package:flutter_app/ui/page/demo/text_field_test.dart';
+import 'package:flutter_app/ui/widget/web_scaffold.dart';
 
 class BuildingListView extends StatefulWidget {
 
@@ -38,7 +37,7 @@ Widget getPage(int index){
     case 5:
       return HttpTest();
     case 6:
-      return XWebView(title: "Test", url: "https://flutter.io/");
+      return WebScaffold(title: "Test", url: "https://flutter.io/");
     default:
       return MyHomePage();
   }

@@ -1,6 +1,6 @@
-import 'package:flutter_app/widget/XLodingDialog.dart';
+import 'package:flutter_app/ui/widget/loding_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/net/XNetClient.dart';
+import 'package:flutter_app/net/http_utils.dart';
 
 class HttpTest extends StatefulWidget{
   

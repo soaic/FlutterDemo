@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/button_test.dart';
-import 'package:flutter_app/list_view_test.dart';
-import 'package:flutter_app/hello_flutter.dart';
+import 'package:flutter_app/ui/page/demo/button_test.dart';
+import 'package:flutter_app/ui/page/demo/list_view_test.dart';
+import 'package:flutter_app/ui/page/demo/hello_flutter.dart';
 
 class NavigationBarTest extends StatefulWidget{
 

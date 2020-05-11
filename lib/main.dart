@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/navigation_bar_test.dart';
+import 'package:flutter_app/ui/page/home_page.dart';
 
 void main() => runApp(
     MyApp()
@@ -8,7 +8,11 @@ void main() => runApp(
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return NavigationBarTest();
+    return MaterialApp(
+      title: "flutter_app",
+      theme: new ThemeData.light(),
+      home: new HomePage()
+    );
   }
 }
 
