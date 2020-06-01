@@ -35,6 +35,8 @@ dependencies:
   share: ^0.6.4+1
   # webview_flutter
   webview_flutter: ^0.3.21
+  # https://github.com/flutterchina/dio
+  dio: 3.0.9
 
 dev_dependencies:
   flutter_test:

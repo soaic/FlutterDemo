@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flukit/flukit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ui/widget/web_scaffold.dart';
 import 'package:flutter_app/ui/widget/widgets.dart';
 import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/utils/navigator_util.dart';
 import 'package:flutter_app/utils/object_util.dart';
 
 class HomePage extends StatefulWidget {
@@ -55,42 +53,7 @@ class HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           buildBanner(context, data),
-          new Container(
-            margin: new EdgeInsets.all(10),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new InkWell(
-                  child: Icon(Icons.movie,
-                    color: Colors.blue,
-                    size: 60,
-                  ),
-                  onTap: () =>
-                      NavigatorUtil.pushWeb(context,
-                          title: "Test",
-                          url: "https://v.qq.com/",
-                          userAgent: "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36",
-                          onWebViewListener: OnWebViewListener(
-                            onPageStarted: (webViewController, url) {
-                              print("url=============="+url);
-                              final baseUrl = "v.qq.com/x/cover";
-                              if (url.indexOf(baseUrl) > 0) {
-                                NavigatorUtil.pushWeb(context,
-                                    title: "qq",
-                                    url: "https://jx.yingxiangbao.cn/vip.php?url=" + url
-                                );
-                              }
-                            }
-                          )
-                      )
-                ),
-                Icon(Icons.movie,
-                  color: Colors.blue,
-                  size: 60,
-                )
-              ],
-            ),
-          )
+
         ],
       ),
     );

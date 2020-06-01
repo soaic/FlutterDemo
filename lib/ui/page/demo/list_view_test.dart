@@ -4,6 +4,7 @@ import 'package:flutter_app/ui/page/demo/http_test.dart';
 import 'package:flutter_app/ui/page/demo/image_test.dart';
 import 'package:flutter_app/ui/page/demo/button_test.dart';
 import 'package:flutter_app/ui/page/demo/hello_flutter.dart';
+import 'package:flutter_app/ui/page/demo/movie_test.dart';
 import 'package:flutter_app/ui/page/demo/text_field_test.dart';
 import 'package:flutter_app/ui/widget/web_scaffold.dart';
 
@@ -23,13 +24,13 @@ void itemClick(BuildContext context, int index, String content){
 }
 
 Widget getPage(int index){
-  switch(index){
+  switch(index) {
     case 0:
       return ButtonTest();
     case 1:
       return ContainerTest();
     case 2:
-      return MyHomePage();
+      return MovieTest();
     case 3:
       return ImageTest();
     case 4:
@@ -117,7 +118,7 @@ class BuildingListViewState extends State<BuildingListView> {
     data.clear();
     data.add("Button");
     data.add("Container");
-    data.add("HelloFlutter");
+    data.add("Movie");
     data.add("Image");
     data.add("TextField");
     data.add("HttpTest");

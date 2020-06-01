@@ -38,6 +38,16 @@ class WebScaffoldState extends State<WebScaffold> {
         userAgent: widget.userAgent,
         initialUrl: widget.url,
         javascriptMode: JavascriptMode.unrestricted,
+        onWebResourceError: (error) {
+          print(error);
+        },
+        debuggingEnabled: true,
+        navigationDelegate: (navigation) {
+          print("navigation.url=$navigation.url");
+          // 阻止进入登录页面
+          //return NavigationDecision.prevent;
+          return NavigationDecision.navigate;
+        },
         onWebViewCreated: (WebViewController webViewController) {
           _webViewController = webViewController;
           if (widget.onWebViewListener != null && widget.onWebViewListener.onWebViewCreated != null) {

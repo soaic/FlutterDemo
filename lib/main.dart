@@ -11,7 +11,10 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       title: "flutter_app",
       theme: new ThemeData.light(),
-      home: new HomePage()
+      initialRoute: "/",
+      routes: {
+        "/": (context) => new HomePage()
+      }
     );
   }
 }
