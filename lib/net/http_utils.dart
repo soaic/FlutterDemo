@@ -1,4 +1,4 @@
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'dart:convert';
 
 class _XNetClient {
@@ -11,30 +11,26 @@ class _XNetClient {
       throw ArgumentError("url is empty");
     }
     try {
-      http.Response response;
+      Dio dio = new Dio();
+      dio.options.baseUrl = _builder._baseUrl;
+      dio.options.connectTimeout = 5000; //5s
+      dio.options.receiveTimeout = 3000;
+
+      Response response;
       if (_builder._method == XNetClientBuilder.POST) {
         dynamic body = _builder._paramBody != null ? _builder._paramBody : _builder._params;
-        response = await http.post(_builder._url, body: body, headers: _builder._headers);
+        response = await dio.post(_builder._url, data: body, options: Options(headers: _builder._headers));
       } else if (_builder._method == XNetClientBuilder.PUT) {
         dynamic body = _builder._paramBody != null ? _builder._paramBody : _builder._params;
-        response = await http.put(_builder._url, body: body, headers: _builder._headers);
+        response = await dio.put(_builder._url, data: body, options: Options(headers: _builder._headers));
       } else {
-        String url = _builder._url;
-        if (_builder._params.isNotEmpty) {
-          StringBuffer sb = new StringBuffer("?");
-          _builder._params.forEach((key, value) {
-            sb.write("$key" + "=$value" + "&");
-          });
-          url = sb.toString().substring(0, sb.length - 1);
-        }
-        response = await http.get(url, headers: _builder._headers);
+        response = await dio.get(_builder._url, queryParameters: _builder._params, options: Options(headers: _builder._headers));
       }
 
       if (response.statusCode == 200 && _builder._onSuccess != null) {
-        _builder._onSuccess(
-            response.statusCode, json.decode(response.body), "");
+        _builder._onSuccess(response.statusCode, json.decode(response.data), "");
       } else {
-        _builder._onFailure(response.statusCode, response.body);
+        _builder._onFailure(response.statusCode, response.data);
       }
     } catch (e) {
       if (_builder._onFailure != null) {
@@ -52,6 +48,7 @@ class XNetClientBuilder {
   static const String POST = "post";
   static const String PUT = "put";
 
+  var _baseUrl = "https://www.wanandroid.com";
   var _url = "";
   var _method = GET;
   var _params = Map<String, Object>();
@@ -59,6 +56,11 @@ class XNetClientBuilder {
   dynamic _paramBody;
   OnSuccess _onSuccess;
   OnFailure _onFailure;
+
+  XNetClientBuilder baseUrl(String baseUrl) {
+    this._baseUrl = baseUrl;
+    return this;
+  }
 
   XNetClientBuilder url(String url) {
     this._url = url;
